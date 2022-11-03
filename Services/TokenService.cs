@@ -1,6 +1,7 @@
 ﻿using Boilerplate.Authentication.Data.Entities;
 using Boilerplate.Authentication.Models.StartupModels;
 using Boilerplate.Authentication.Services.Interfaces;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,9 +19,9 @@ namespace Boilerplate.Authentication.Services
         
         private readonly AppSettings _appSettings;
 
-        public TokenService(AppSettings appSettings)
+        public TokenService(IOptions<AppSettings> appSettings)
         {
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
         }
 
         public string GenerateJwtToken(int id)

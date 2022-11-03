@@ -7,6 +7,7 @@ using Boilerplate.Authentication.Models.ResponseModels;
 using Boilerplate.Authentication.Models.StartupModels;
 using Boilerplate.Authentication.Repositories.Interfaces;
 using Boilerplate.Authentication.Services.Interfaces;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,12 @@ namespace Boilerplate.Authentication.Services
         public AccountService(IAccountRepository accountRepository,
             ITokenService tokenService,
             IMapper mapper,
-            AppSettings appSettings)
+            IOptions<AppSettings> appSettings)
         {
             _accountRepository = accountRepository;
             _tokenService = tokenService;
             _mapper = mapper;
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
         }
 
         public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model, string ipAddress)
@@ -284,6 +285,5 @@ namespace Boilerplate.Authentication.Services
 
             return accounts.Count is default(int);
         }
-
     }
 }

@@ -1,5 +1,6 @@
 using Boilerplate.Authentication.Config;
 using Boilerplate.Authentication.Config.MapperProfiles;
+using Boilerplate.Authentication.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,10 @@ namespace Boilerplate.Authentication
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<EnableRequestBodyBufferingMiddleware>();
+
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseHttpsRedirection();
 

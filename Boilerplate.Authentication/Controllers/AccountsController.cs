@@ -42,7 +42,7 @@ namespace Boilerplate.Authentication.Controllers
             return Ok(response);
         }
 
-        [Microsoft.AspNetCore.Authorization.Authorize]
+        [Authorize]
         [HttpPost("revoke-token")]
         public async Task<IActionResult> RevokeToken(RevokeTokenRequest model)
         {
@@ -112,7 +112,7 @@ namespace Boilerplate.Authentication.Controllers
             return Ok(accounts);
         }
 
-        [Microsoft.AspNetCore.Authorization.Authorize]
+        [Authorize]
         [HttpGet("{id:int}")]
         public async Task<ActionResult<AccountResponse>> GetById(int id)
         {
@@ -135,7 +135,7 @@ namespace Boilerplate.Authentication.Controllers
             return Ok(account);
         }
 
-        [Microsoft.AspNetCore.Authorization.Authorize]
+        [Authorize]
         [HttpPut("{id:int}")]
         public async Task<ActionResult<AccountResponse>> Update(int id, UpdateRequest model)
         {
@@ -154,7 +154,7 @@ namespace Boilerplate.Authentication.Controllers
             return Ok(account);
         }
 
-        [Microsoft.AspNetCore.Authorization.Authorize]
+        [Authorize]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
