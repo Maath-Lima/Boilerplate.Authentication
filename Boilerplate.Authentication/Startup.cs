@@ -37,8 +37,8 @@ namespace Boilerplate.Authentication
             }
 
             app.UseMiddleware<EnableRequestBodyBufferingMiddleware>();
-
             app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseHttpsRedirection();
 

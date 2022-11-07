@@ -25,9 +25,9 @@ namespace Boilerplate.Authentication.Controllers
         public async Task<ActionResult<AuthenticateResponse>> AuthenticateAsync(AuthenticateRequest authenticateRequest)
         {
             var response = await _accountService.Authenticate(authenticateRequest, AccountsControllerHelper.GetIpAddress(Request));
-            
+
             AccountsControllerHelper.SetTokenCookie(response.RefreshToken, Response);
-            
+
             return Ok(response);
         }
 
@@ -68,7 +68,7 @@ namespace Boilerplate.Authentication.Controllers
         {
             await _accountService.Register(registerRequest, AccountConstants.ORIGIN);
 
-            return Ok(AccountConstants.REGISTER_MESSAGE);
+            return Ok(MessageResponse(AccountConstants.REGISTER_MESSAGE));
         }
 
         [HttpPost("verify-email")]
@@ -76,7 +76,7 @@ namespace Boilerplate.Authentication.Controllers
         {
             await _accountService.VerifyEmail(verifyEmailRequest.Token);
 
-            return Ok(AccountConstants.VERIFY_EMAIL_MESSAGE);
+            return Ok(MessageResponse(AccountConstants.VERIFY_EMAIL_MESSAGE));
         }
 
         [HttpPost("forgot-password")]
