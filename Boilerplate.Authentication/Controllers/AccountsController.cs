@@ -149,7 +149,7 @@ namespace Boilerplate.Authentication.Controllers
                 model.Role = null;
             }
 
-            var account = _accountService.Update(id, model);
+            var account = await _accountService.Update(id, model);
 
             return Ok(account);
         }
